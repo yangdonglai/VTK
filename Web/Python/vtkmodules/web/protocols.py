@@ -308,7 +308,7 @@ class vtkWebPublishImageDelivery(vtkWebProtocol):
         self.staleHandlerCount = 0
         self.deltaStaleTimeBeforeRender = 0.5  # 0.5s
         self.decode = decode
-        self.viewsInAnimations = []
+        self.viewsInAnimations = set()
         self.targetFrameRate = 30.0
         self.minFrameRate = 12.0
         self.maxFrameRate = 30.0
@@ -412,7 +412,7 @@ class vtkWebPublishImageDelivery(vtkWebProtocol):
         sView = self.getView(viewId)
         realViewId = str(self.getGlobalId(sView))
 
-        self.viewsInAnimations.append(realViewId)
+        self.viewsInAnimations.add(realViewId)
         if len(self.viewsInAnimations) == 1:
             self.animate()
 
